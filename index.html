@@ -4,14 +4,67 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>무리수 근사값 찾기</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h2 {
+    color: #333;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input[type="number"] {
+    padding: 8px;
+    width: calc(100% - 90px);
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+p#root {
+    margin-top: 20px;
+    font-weight: bold;
+}
+</style>
 </head>
 <body>
 
-<h2>뉴턴 법을 이용한 근사값 찾기</h2>
-<label for="inputNumber">원하는 루트의 값 입력: </label>
-<input type="number" id="inputNumber">
-<button onclick="findRoot()">근사값 찾기</button>
-<p id="root"></p>
+<div class="container">
+    <h2>뉴턴 법을 이용한 근사값 찾기</h2>
+    <label for="inputNumber">루트의 값 입력: </label>
+    <input type="number" id="inputNumber" placeholder="루트 값 입력">
+    <button onclick="findRoot()">근사값 찾기</button>
+    <p id="root"></p>
+</div>
 
 <script>
 function f(x, root) {
