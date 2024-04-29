@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>무리수 근사</title>
+</head>
+<body>
+
+<h2>원주율 (π) 근사</h2>
+<p id="piValue"></p>
+
+<script>
+function approximatePi(iterations) {
+    let pi = 0;
+    let sign = 1;
+    for (let i = 0; i < iterations; i++) {
+        pi += sign * (4 / (2 * i + 1));
+        sign *= -1;
+    }
+    return pi;
+}
+
+const iterations = 10000; // 근사 반복 횟수
+const approximatedPi = approximatePi(iterations);
+document.getElementById("piValue").innerText = `π의 근사값: ${approximatedPi}`;
+</script>
+
+</body>
+</html>
