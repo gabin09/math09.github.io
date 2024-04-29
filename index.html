@@ -3,27 +3,48 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>무리수 근사</title>
+<title>Newton's Method</title>
 </head>
 <body>
 
-<h2>원주율 (π) 근사</h2>
-<p id="piValue"></p>
+<h2>Newton's Method</h2>
+<label for="inputNumber">원하는 루트의 값 입력: </label>
+<input type="number" id="inputNumber">
+<button onclick="findRoot()">근사값 찾기</button>
+<p id="root"></p>
 
 <script>
-function approximatePi(iterations) {
-    let pi = 0;
-    let sign = 1;
-    for (let i = 0; i < iterations; i++) {
-        pi += sign * (4 / (2 * i + 1));
-        sign *= -1;
-    }
-    return pi;
+function f(x, root) {
+    return x ** 2 - root; // f(x) = x^2 - root
 }
 
-const iterations = 10000; // 근사 반복 횟수
-const approximatedPi = approximatePi(iterations);
-document.getElementById("piValue").innerText = `π의 근사값: ${approximatedPi}`;
+function fPrime(x) {
+    return 2 * x; // f'(x) = 2x
+}
+
+function newtonMethod(root, initialGuess, tolerance, maxIterations) {
+    let x = initialGuess;
+    let iterations = 0;
+
+    while (true) {
+        const fx = f(x, root);
+        const fpx = fPrime(x);
+        const nextX = x - fx / fpx;
+        
+        if (Math.abs(nextX - x) < tolerance || iterations >= maxIterations) {
+            return nextX;
+        }
+        
+        x = nextX;
+        iterations++;
+    }
+}
+
+function findRoot() {
+    const inputNumber = document.getElementById("inputNumber").value;
+    const root = newtonMethod(inputNumber, 1, 0.0001, 100); // 초기 추정값, 허용 오차, 최대 반복 횟수
+    document.getElementById("root").innerText = `근사값: ${root}`;
+}
 </script>
 
 </body>
